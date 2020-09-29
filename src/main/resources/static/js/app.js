@@ -73,19 +73,18 @@ var app = (function (){
         setHour(date+' '+   cinema_date);
         setMovie(cinema_movie);
         if (cine != "" && cinema_date != "" ) {
-            console.log("entra");
             api.getFunctionsByCinemaAndDateAndMovie(cine,cinema_date,cinema_movie,getSeats);
-            //api.getFunctionsByCinemaAndDate(cinema_name,cinema_date,fun);
-            //api.getFunctionsByCinema(cinema_name,fun);
         }
     };
     var updateAndSave =  function () {
-        setHour(date+""+$("#fhour").val());
-        console.log(hour);
-        if (cine != "" && cinema_date != "" ){
+        setHour(date+" "+$("#fhour").val());
+        console.log(date);
+        console.log(movie);
+        console.log(currentCinema);
+        if (cine != ""){
             api.updateFunction(currentCinema).then(
             function () {
-                getFunctionsByCinemaAndDate(cinema_name,cinema_date);
+                getFunctionsByCinemaAndDateAndMovie(cinema_date,movie);
             })
         }
     };
@@ -97,7 +96,6 @@ var app = (function (){
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");*/
         var dispo = func.seats;
-        console.log(dispo);
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         var y1=40;
