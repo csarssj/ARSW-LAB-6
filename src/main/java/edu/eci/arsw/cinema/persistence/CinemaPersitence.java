@@ -80,5 +80,7 @@ public interface CinemaPersitence {
      * @throws  CinemaPersistenceException if there is no such cinema
      */
 	public void setFunction(String name, CinemaFunction function) throws CinemaPersistenceException;
-    
+
+
+
 }

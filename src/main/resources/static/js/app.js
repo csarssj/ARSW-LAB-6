@@ -1,9 +1,17 @@
-var api = apimock;
-//var api = apiclient;
+//var api = apimock;
+var api = apiclient;
 var app = (function (){
+    var currentCinema = {
+    movie:{
+     name: null ,
+     genre: null
+     },
+    seats:[],
+    date:null}
 	var cine;
 	var functions =[];
 	var date;
+	var hour;
 	var movie;
 
 	var _map = function (list){
@@ -11,7 +19,9 @@ var app = (function (){
     			return {name:cinema.movie.name, genre:cinema.movie.genre, date: cinema.date.split(" ")[1]}
     	})
     }
-
+    var setCinema = function(cinema){
+    	currentCinema = cinema;
+    };
 	var setCine = function(cinema_name){
 		cine = cinema_name;
 	};
@@ -19,10 +29,14 @@ var app = (function (){
 		date = cinema_date;
 	};
 	var setMovie = function(cinema_movie){
-    	movie = movie;
+    	movie = cinema_movie;
+    };
+    var setHour = function(cinema_hour){
+        	hour = cinema_hour;
     };
 
 	function table(cinemas) {
+        setCinema(cinemas);
 	    cinemas = _map(cinemas);
 	    $("#body").html("");
     	cinemas.map(function(cinema) {
@@ -56,25 +70,49 @@ var app = (function (){
 	    //console.log(date+' '+   cinema_date);
 	    //console.log(cinema_date);
 	    //console.log(cinema_movie);
-        setDate(date+' '+   cinema_date);
+        setHour(date+' '+   cinema_date);
         setMovie(cinema_movie);
         if (cine != "" && cinema_date != "" ) {
             console.log("entra");
-            api.getFunctionsByCinemaAndDateAndMovie(cine,cinema_date,cinema_movie,fun);
+            api.getFunctionsByCinemaAndDateAndMovie(cine,cinema_date,cinema_movie,getSeats);
             //api.getFunctionsByCinemaAndDate(cinema_name,cinema_date,fun);
             //api.getFunctionsByCinema(cinema_name,fun);
+        }
+    };
+    var updateAndSave =  function () {
+        setHour(date+""+$("#fhour").val());
+        console.log(hour);
+        if (cine != "" && cinema_date != "" ){
+            api.updateFunction(currentCinema).then(
+            function () {
+                getFunctionsByCinemaAndDate(cinema_name,cinema_date);
+            })
         }
     };
     var getFunctionsByCinema =  function (cinema_name) {
 
     };
-    var getSeats =  function (seats) {
-        var seat = seats.seats;
+    var getSeats =  function (func) {
+       /* var seats = func.seats;
         var c = document.getElementById("myCanvas");
-        var ctx = a.getContext("2d");
-        ctx.fillStyle = "#FF0000";
-        ctx.fillRect(20, 20, 150, 100);
-        console.log(seats)
+        var ctx = c.getContext("2d");*/
+        var dispo = func.seats;
+        console.log(dispo);
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var y1=40;
+        for (x of dispo){
+            var x1=0;
+            for (y of x){
+                if(y==true){
+                    ctx.fillStyle = "blue";
+                }
+                else{ctx.fillStyle = "red";}
+                x1+=40;
+                ctx.fillRect(x1, y1  ,30, 30);
+            }
+            y1  +=45;
+        }
 
     };
     var fun=function(list){
@@ -89,5 +127,6 @@ var app = (function (){
 	    getFunctionsByCinemaAndDateAndMovie : getFunctionsByCinemaAndDateAndMovie,
 		getFunctionsByCinemaAndDate : getFunctionsByCinemaAndDate,
 		getFunctionsByCinema :  getFunctionsByCinema,
+		updateAndSave : updateAndSave,
 	};
 })();

@@ -35,7 +35,7 @@ public class Cinema {
     public List<CinemaFunction> getFunctionsByDate(String date) {
     	List<CinemaFunction> functionsR = new ArrayList<CinemaFunction>();
     	for (CinemaFunction f:functions) {
-    		if(f.getDate().equalsIgnoreCase(date)) {
+    		if(f.getDate().contains(date)) {
     			functionsR.add(f);
     		}
     	}
@@ -66,7 +66,7 @@ public class Cinema {
 	public CinemaFunction getFunctionsByDateAndMovie(String date, String movie) {
 		CinemaFunction res = null;
 		for (CinemaFunction f:functions) {
-    		if(f.getDate().equalsIgnoreCase(date) && f.getMovie().getName().equalsIgnoreCase(movie)) {
+    		if(f.getDate().contains(date) && f.getMovie().getName().equalsIgnoreCase(movie)) {
     			return f;
     		}
     	}

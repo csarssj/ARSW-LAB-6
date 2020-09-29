@@ -75,6 +75,9 @@ public class CinemaServices {
     public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
     	return cps.getFunctionsbyCinemaAndDate(cinema, date);
     }
+	public CinemaFunction getFunctionsbyCinemaAndDateAndMovie(String cinema, String date,String movie) throws CinemaPersistenceException {
+		return cps.getFunctionbyCinemaAndDateAndMovie(cinema, date,movie);
+	}
     public List<CinemaFunction> Cfilter (String cinema,String date, String filtro){
     	List<CinemaFunction> functions = getFunctionsbyCinemaAndDate(cinema, date);
     	return fps.Cfilter(functions, filtro);

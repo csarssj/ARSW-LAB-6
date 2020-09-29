@@ -74,9 +74,9 @@ public class CinemaAPIController {
 	@RequestMapping(method = RequestMethod.GET,path = "{name}/{date}/{movie}")
 	public ResponseEntity<?> manejadorGetCinemasByNameAndDateAndMovie(@PathVariable String name,
 			@PathVariable String date,@PathVariable String movie){
-		List<CinemaFunction> cinema = null;
+		CinemaFunction cinema = null;
 	    try {
-	    	cinema= service.getFunctionsbyCinemaAndDate(name, date);
+	    	cinema= service.getFunctionsbyCinemaAndDateAndMovie(name, date,movie);
 	    	
 	    } catch (Exception ex) {
 	        Logger.getLogger(CinemaAPIController.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,7 +96,7 @@ public class CinemaAPIController {
 
 	}
 	@RequestMapping(method = RequestMethod.PUT,path = "{name}")	
-	public ResponseEntity<?> manejadorPostRecursoXX(@PathVariable String name, @RequestBody CinemaFunction function){
+	public ResponseEntity<?> updateFunction(@PathVariable String name, @RequestBody CinemaFunction function){
 	    try {
 	        service.setFunction(name, function);
 	        return new ResponseEntity<>(HttpStatus.CREATED);

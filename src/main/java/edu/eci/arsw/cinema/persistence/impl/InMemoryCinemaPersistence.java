@@ -42,7 +42,7 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
         Cinema c=new Cinema("cinemaX",functions);
         cinemas.put("cinemaX", c);
         //funcion 2
-        String functionDate2 = "2020-12-18";
+        String functionDate2 = "2020-12-18 16:30";
         List<CinemaFunction> functions2= new ArrayList<>();
         CinemaFunction funct21 = new CinemaFunction(new Movie("SuperHeroes Movie","Action"),functionDate2);
         CinemaFunction funct22 = new CinemaFunction(new Movie("The Night","Horror"),functionDate2);
@@ -51,7 +51,7 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
         Cinema c2=new Cinema("cineco",functions2);
         cinemas.put("cineco", c2);
         //funcion 3
-        String functionDate3 = "2020-11-07";
+        String functionDate3 = "2020-11-07 20:30";
         List<CinemaFunction> functions3= new ArrayList<>();
         CinemaFunction funct31 = new CinemaFunction(new Movie("SuperHeroes Movie","Action"),functionDate3);
         CinemaFunction funct32 = new CinemaFunction(new Movie("The Night","Horror"),functionDate3);
