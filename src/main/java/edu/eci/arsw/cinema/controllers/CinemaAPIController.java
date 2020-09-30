@@ -106,10 +106,10 @@ public class CinemaAPIController {
 	    }        
 
 	}
-	@RequestMapping(method = RequestMethod.DELETE,path = "{name}")
-	public ResponseEntity<?> deleteFunction(@PathVariable String name, @RequestBody CinemaFunction function){
+	@RequestMapping(method = RequestMethod.DELETE,path = "{name}/{date}/{movie}")
+	public ResponseEntity<?> deleteFunction(@PathVariable String name,@PathVariable String date,@PathVariable String movie){
 		try {
-			service.deleteFunction(name, function);
+			service.deleteFunction(name,date,movie);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception ex) {
 			Logger.getLogger(CinemaAPIController.class.getName()).log(Level.SEVERE, null, ex);

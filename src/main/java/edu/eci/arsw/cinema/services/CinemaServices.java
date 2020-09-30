@@ -99,9 +99,9 @@ public class CinemaServices {
 		}
     }
 
-	public void deleteFunction(String name, CinemaFunction function) {
+	public void deleteFunction(String name,String date,String movie) {
 		try {
-			cps.deleteFunction(name, function);
+			cps.deleteFunction(name, date,movie);
 		} catch (CinemaPersistenceException e) {
 			throw new UnsupportedOperationException("Not supported yet.");
 		}

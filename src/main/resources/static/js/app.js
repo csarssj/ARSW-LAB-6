@@ -42,6 +42,7 @@ var app = (function (){
     	cinemas.map(function(cinema) {
     	    currentCinema.movie.name= cinema.name;
             currentCinema.movie.genre= cinema.genre;
+            currentCinema.seats=cinema.seats;
     		$('#body')
     			.append(
     			  `<tr>
@@ -149,7 +150,7 @@ var app = (function (){
     };
     var deleteFunction = function(){
         if (cine != ""){
-            api.deleteFunction(cine,currentCinema).then(
+            api.deleteFunction(cine,currentCinema.date,currentCinema.movie.name).then(
                 function () {
                     getFunctionsByCinemaAndDateAndMovie(date,movie);
                 })
@@ -163,14 +164,10 @@ var app = (function (){
         //console.log(currentCinema);
         //setDate(func.date);
        // console.log(date);
-       /* if(hour!=null){
-                    func.date=hour;
-        }
         setCinema(func);
-        console.log(currentCinema.date);
-        console.log(hour);
-        console.log(currentCinema);*/
-
+        //console.log(currentCinema.);
+        //console.log(hour);
+        //console.log(currentCinema);
         currentCinema.seats = func.seats;
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
@@ -204,6 +201,7 @@ var app = (function (){
 		updateAndSave : updateAndSave,
 		createFunction:createFunction,
 		createNewFunction:createNewFunction,
+		deleteFunction:deleteFunction,
 	};
 })();
 

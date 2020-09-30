@@ -127,9 +127,9 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
     	cine.setFuction(function);
     }
     @Override
-    public void deleteFunction(String name, CinemaFunction function) throws CinemaPersistenceException {
+    public void deleteFunction(String name, String date,String movie) throws CinemaPersistenceException {
         Cinema cine = getCinema(name);
-        cine.deleteFuction(function);
+        cine.deleteFuction(date,movie);
     }
 
 }

@@ -85,7 +85,7 @@ public interface CinemaPersitence {
      *
      * @throws  CinemaPersistenceException if there is no such cinema
      */
-    public void deleteFunction(String name, CinemaFunction function) throws CinemaPersistenceException;
+    public void deleteFunction(String name, String date,String movie) throws CinemaPersistenceException;
 
 
 

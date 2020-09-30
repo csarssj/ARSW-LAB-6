@@ -1,5 +1,5 @@
 apiclient= (function () {
-            var url = "http://localhost:8081/cinemas"
+            var url = "http://localhost:8080/cinemas"
             var  getFunctionsByCinemaAndDate = function(cinema_name,cinema_date,callback){
                 $.getJSON(url+"/"+cinema_name+"/"+cinema_date,(data)=>{
                     callback(data);
@@ -33,9 +33,12 @@ apiclient= (function () {
                 });
                 return create;
             }
-            var deleteFunction= function(cinemaName,Function){
+            var deleteFunction= function(cinema_name,cinema_date,cinema_movie){
+                console.log(cinema_name);
+                console.log(cinema_date);
+                console.log(cinema_movie);
                 var deleteF = $.ajax({
-                    url:url+"/"+cinema_name,
+                    url:url+"/"+cinema_name+"/"+cinema_date+"/"+cinema_movie,
                     type: 'DELETE',
                     data: JSON.stringify(Function),
                     contentType: "application/json",

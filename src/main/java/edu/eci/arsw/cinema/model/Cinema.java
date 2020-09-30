@@ -54,8 +54,12 @@ public class Cinema {
     	this.functions.add(function);
     }
 
-    public void deleteFuction(CinemaFunction function) {
-        this.functions.remove(function);
+    public void deleteFuction(String date,String movie) {
+        for (CinemaFunction f:functions) {
+            if(f.getDate().contains(date) && f.getMovie().getName().equalsIgnoreCase(movie)) {
+                functions.remove(f);
+            }
+        }
     }
     
     public void setFuction(CinemaFunction function) {
