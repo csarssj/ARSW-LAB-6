@@ -46,8 +46,18 @@ public class CinemaFunction {
         return this.seats;
     }
 
-    public List<List<Boolean>> setSeats(List<List<Boolean>> seats) {
-        return this.seats;
+    public void setSeats()
+    {
+        this.seats.clear();
+        for (int i=0;i<7;i++){
+            List<Boolean> row= new ArrayList<>(Arrays.asList(new Boolean[12]));
+            if(i/2==0 ) {
+                Collections.fill(row, Boolean.FALSE);
+            }else{
+                Collections.fill(row, Boolean.FALSE);
+            }
+            this.seats.add(row);
+        }
     }
     
     public Movie getMovie() {

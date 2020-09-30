@@ -7,15 +7,10 @@ apiclient= (function () {
             };
             var  getFunctionsByCinemaAndDateAndMovie = function(cine,cinema_date,cinema_movie,callback){
                $.getJSON(url+"/"+cine+"/"+cinema_date+"/"+cinema_movie,(data)=>{
-                  // console.log(cine);
-                  // console.log(cinema_date);
-                  // console.log(cinema_movie);
-                  // console.log(data);
                    callback(data);
                },null)
             };
             var updateFunction= function (cinema_name,Function) {
-                //console.log(Function);
                 var put=$.ajax({
                     url:url+"/"+cinema_name,
                     type:'PUT',
@@ -34,9 +29,6 @@ apiclient= (function () {
                 return create;
             }
             var deleteFunction= function(cinema_name,cinema_date,cinema_movie){
-                console.log(cinema_name);
-                console.log(cinema_date);
-                console.log(cinema_movie);
                 var deleteF = $.ajax({
                     url:url+"/"+cinema_name+"/"+cinema_date+"/"+cinema_movie,
                     type: 'DELETE',
