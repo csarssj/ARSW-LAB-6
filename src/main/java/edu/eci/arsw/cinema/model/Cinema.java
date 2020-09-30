@@ -60,7 +60,7 @@ public class Cinema {
     			functions.set(functions.indexOf(f), function);
     		}
     	}
-    	this.functions.add(function);
+    	//this.functions.add(function);
     }
 
 	public CinemaFunction getFunctionsByDateAndMovie(String date, String movie) {

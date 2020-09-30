@@ -13,6 +13,7 @@ var app = (function (){
 	var date;
 	var hour;
 	var movie;
+	var newf  = false;
 
 	var _map = function (list){
     	return list.map(function(cinema){
@@ -39,6 +40,8 @@ var app = (function (){
 	    cinemas = _map(cinemas);
 	    $("#body").html("");
     	cinemas.map(function(cinema) {
+    	    currentCinema.movie.name= cinema.name;
+            currentCinema.movie.genre= cinema.genre;
     		$('#body')
     			.append(
     			  `<tr>
@@ -70,7 +73,6 @@ var app = (function (){
 	    //console.log(cinema_date);
 	    //console.log(cinema_movie);
 	    //setCinema(cinema.date);
-        console.log(hour);
         console.log(cinema_date);
         setMovie(cinema_movie);
         if (cine != "" && cinema_date != "" ) {
@@ -83,15 +85,32 @@ var app = (function (){
         console.log(date);
         console.log(movie);
         console.log(hour);
-
+        currentCinema.date=hour;
         if (cine != ""){
-            api.updateFunction(cine,currentCinema).then(
-            function () {
-                getFunctionsByCinemaAndDateAndMovie(date,movie);
-            })
+            if(newf){
+                api.createFunction(cine,currentCinema).then(
+                function () {
+                    createNewFunction();
+                })
+            }
+            else{
+                api.updateFunction(cine,currentCinema).then(
+                function () {
+                    getFunctionsByCinemaAndDateAndMovie(date,movie);
+                })
+
+            }
         }
+        getFunctionsByCinemaAndDate(cine,date);
     };
     var getFunctionsByCinema =  function (cinema_name) {
+
+    };
+    var createNewFunction = function (){
+    };
+    var createFunction = function (){
+         newf = true;
+
 
     };
     var getSeats =  function (func) {
@@ -99,20 +118,21 @@ var app = (function (){
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");*/
         //console.log(currentCinema);
-        setDate(func.date);
+        //setDate(func.date);
        // console.log(date);
+       /* if(hour!=null){
+                    func.date=hour;
+        }
         setCinema(func);
         console.log(currentCinema.date);
         console.log(hour);
-        if(hour!=null){
-            currentCinema.date=hour;
-        }
-        console.log(currentCinema);
-        var dispo = func.seats;
+        console.log(currentCinema);*/
+
+        currentCinema.seats = func.seats;
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         var y1=40;
-        for (x of dispo){
+        for (x of currentCinema.seats){
             var x1=0;
             for (y of x){
                 if(y==true){
@@ -139,5 +159,6 @@ var app = (function (){
 		getFunctionsByCinemaAndDate : getFunctionsByCinemaAndDate,
 		getFunctionsByCinema :  getFunctionsByCinema,
 		updateAndSave : updateAndSave,
+		createFunction:createFunction,
 	};
 })();
