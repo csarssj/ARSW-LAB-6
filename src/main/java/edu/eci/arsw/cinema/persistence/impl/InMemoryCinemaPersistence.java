@@ -123,7 +123,7 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
     }
     @Override
     public void setFunction(String name, CinemaFunction function) throws CinemaPersistenceException {
-    	Cinema cine = getCinema(name);  
+    	Cinema cine = getCinema(name);
     	cine.setFuction(function);
     }
 

@@ -36,7 +36,6 @@ var app = (function (){
     };
 
 	function table(cinemas) {
-        setCinema(cinemas);
 	    cinemas = _map(cinemas);
 	    $("#body").html("");
     	cinemas.map(function(cinema) {
@@ -44,9 +43,9 @@ var app = (function (){
     			.append(
     			  `<tr>
     				<td>`+cinema.name+`</td>
-    				<td>`+cinema.date+`</td>
-    				<td>`+cinema.genre+`</td>`+
-    				"<td><form><button type='button' class='btn btn-primary' onclick='app.getFunctionsByCinemaAndDateAndMovie( \"" +  cinema.date +'" , "' + cinema.name +"\")'>Open</button></form></td>"+
+    				<td>`+cinema.genre+`</td>
+    				<td>`+cinema.date+`</td>`+
+    				"<td><form><button type='button' class='btn btn-primary' onclick='app.getFunctionsByCinemaAndDateAndMovie( \"" +  cinema.date +'" , "' + cinema.name +"\")'>Open</button></form></td>,"+
     				//<input type='button' class='show' value='Consult seats' onclick='app.getFunctionsByCinemaAndDate(\""+cinema.name+"\",\""+cinema.date+"\",\""+getSeats+"\")'></input>"+
     			  `</tr>`
     			);
@@ -70,21 +69,25 @@ var app = (function (){
 	    //console.log(date+' '+   cinema_date);
 	    //console.log(cinema_date);
 	    //console.log(cinema_movie);
-        setHour(date+' '+   cinema_date);
+	    //setCinema(cinema.date);
+        console.log(hour);
+        console.log(cinema_date);
         setMovie(cinema_movie);
         if (cine != "" && cinema_date != "" ) {
             api.getFunctionsByCinemaAndDateAndMovie(cine,cinema_date,cinema_movie,getSeats);
         }
     };
     var updateAndSave =  function () {
-        setHour(date+" "+$("#fhour").val());
+        setHour(date.split(" ")[0]+" "+$("#fhour").val());
+       // setDate(date+" "+currentCinema.date);
         console.log(date);
         console.log(movie);
-        console.log(currentCinema);
+        console.log(hour);
+
         if (cine != ""){
-            api.updateFunction(currentCinema).then(
+            api.updateFunction(cine,currentCinema).then(
             function () {
-                getFunctionsByCinemaAndDateAndMovie(cinema_date,movie);
+                getFunctionsByCinemaAndDateAndMovie(date,movie);
             })
         }
     };
@@ -95,6 +98,16 @@ var app = (function (){
        /* var seats = func.seats;
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");*/
+        //console.log(currentCinema);
+        setDate(func.date);
+       // console.log(date);
+        setCinema(func);
+        console.log(currentCinema.date);
+        console.log(hour);
+        if(hour!=null){
+            currentCinema.date=hour;
+        }
+        console.log(currentCinema);
         var dispo = func.seats;
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");

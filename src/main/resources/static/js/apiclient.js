@@ -6,7 +6,7 @@ apiclient= (function () {
                 },null)
             };
             var  getFunctionsByCinemaAndDateAndMovie = function(cine,cinema_date,cinema_movie,callback){
-               $.getJSON(url+"/"+cine+"/"+"/"+cinema_date+"/"+cinema_movie,(data)=>{
+               $.getJSON(url+"/"+cine+"/"+cinema_date+"/"+cinema_movie,(data)=>{
                   // console.log(cine);
                   // console.log(cinema_date);
                   // console.log(cinema_movie);
@@ -14,9 +14,10 @@ apiclient= (function () {
                    callback(data);
                },null)
             };
-            var updateFunction= function (Function) {
+            var updateFunction= function (cinema_name,Function) {
+                //console.log(Function);
                 var put=$.ajax({
-                    url:url+"/"+Function.name,
+                    url:url+"/"+cinema_name,
                     type:'PUT',
                     data:JSON.stringify(Function),
                     contentType: "application/json",
