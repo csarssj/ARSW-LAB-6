@@ -45,6 +45,10 @@ public class CinemaFunction {
     public List<List<Boolean>> getSeats() {
         return this.seats;
     }
+
+    public List<List<Boolean>> setSeats(List<List<Boolean>> seats) {
+        return this.seats;
+    }
     
     public Movie getMovie() {
         return movie;

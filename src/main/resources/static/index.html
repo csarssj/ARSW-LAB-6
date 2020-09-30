@@ -48,6 +48,11 @@
             float:right;
             width:900px;
             display:inline-block;
+            height:150px;
+	    }#cuatro{
+            float:right;
+            width:900px;
+            display:inline-block;
             height:450px;
 	    }
 		</style>
@@ -89,8 +94,18 @@
         <input type="text" id="fhour" name="fhour" value="hour"/>
         <button type="button" id="Safe/Update" class="btn btn-primary" onclick="app.updateAndSave()" >Safe/Update</button>
         </br>
-        <button type="button" id="Create" class="btn btn-success" onclick="app.createFunction()" >Create New Function</button>
+        <button type="button" id="Create" class="add_form_field" onclick="app.createFunction()" >Create New Function</button>
         <button type="button" id="Delete" class="btn btn-danger"  onclick="app.deleteFunction()">Delete Function</button>
+
+    </div>
+    <div id="cuatro"class="container1">
+        <label for="fnewname">Edit Function :</label>
+        <input type="text" id="fnewname" name="fnewname" value="new name"/></br>
+        <label for="fnewgenre">Edit Function :</label>
+        <input type="text" id="fnewgenre" name="fnewgenre" value="new genre"/></br>
+        <label for="fnewhour">Edit Function :</label>
+        <input type="text" id="fnewhour" name="fnewhour" value="new hour"/></br>
+        <button type="button" class="btn btn-primary" onclick="app.createNewFunction( $('#fnewname').val(),$('#fnewgenre').val(),$('#fnewhour').val())">Insert</button></div>
     </div>
 </body>
 <script src="js/apiclient.js"></script>

@@ -53,6 +53,10 @@ public class Cinema {
     public void addNewFuction(CinemaFunction function) {
     	this.functions.add(function);
     }
+
+    public void deleteFuction(CinemaFunction function) {
+        this.functions.remove(function);
+    }
     
     public void setFuction(CinemaFunction function) {
     	for(CinemaFunction f : functions) {

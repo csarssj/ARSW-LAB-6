@@ -106,4 +106,15 @@ public class CinemaAPIController {
 	    }        
 
 	}
+	@RequestMapping(method = RequestMethod.DELETE,path = "{name}")
+	public ResponseEntity<?> deleteFunction(@PathVariable String name, @RequestBody CinemaFunction function){
+		try {
+			service.deleteFunction(name, function);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception ex) {
+			Logger.getLogger(CinemaAPIController.class.getName()).log(Level.SEVERE, null, ex);
+			return new ResponseEntity<>("Error 400",HttpStatus.NOT_FOUND);
+		}
+
+	}
 }

@@ -106,12 +106,55 @@ var app = (function (){
     var getFunctionsByCinema =  function (cinema_name) {
 
     };
-    var createNewFunction = function (){
+    var createNewFunction = function (new_name,new_genre,new_hour){
+        var seats2 = [[true, true, false, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, false, false, false, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, false, true, true, false]];
+        currentCinema = {
+            movie:{
+             name: new_name ,
+             genre: new_genre
+             },
+            seats:seats2,
+            date:date.split(" ")[0]+" "+new_hour};
+         api.createFunction(cine,currentCinema);
+
     };
     var createFunction = function (){
-         newf = true;
+      //   newf = true;
+        /* var wrapper = $(".container1");
+             var add_button = $(".col-xl-6");
+             var x= 0
+             $(add_button).click(function(e) {
+                 e.preventDefault();
+                     if(x<1){
+                     $(wrapper).append('<label for="fnewname">Edit Function :</label>');
+                     $(wrapper).append('<input type="text" id="fnewname" name="fnewname" value="new name"/></br>');
+                     //$(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>');
+                     $(wrapper).append('<label for="fnewgenre">Edit Function :</label>');
+                     $(wrapper).append('<input type="text" id="fnewgenre" name="fnewgenre" value="new genre"/></br>');
+                     //$(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>');
+                     $(wrapper).append('<label for="fnewhour">Edit Function :</label>');
+                     $(wrapper).append('<input type="text" id="fnewhour" name="fnewhour" value="new hour"/></br>');
+                     //$(wrapper).append('<button type="button" class="btn btn-primary" onclick="app.createNewFunction( $('#fnewname').val(),$('#fnewgenre').val(),$('#fnewhour').val())">Insert</button></div>');//add input box
+                     x++;
+                     }
+             });
 
+             /*$(wrapper).on("click", ".insert", function(e) {
+                 e.preventDefault();
+                 $(this).parent('div').remove();
+                 console.log($("#fnewname").val());
+                 createNewFunction ($("#fnewname").val(),$("#fnewgenre").val(),$("#fnewhour").val());
 
+         })*/
+    };
+    var deleteFunction = function(){
+        if (cine != ""){
+            api.deleteFunction(cine,currentCinema).then(
+                function () {
+                    getFunctionsByCinemaAndDateAndMovie(date,movie);
+                })
+        }
+        getFunctionsByCinemaAndDate(cine,date);
     };
     var getSeats =  function (func) {
        /* var seats = func.seats;
@@ -160,5 +203,7 @@ var app = (function (){
 		getFunctionsByCinema :  getFunctionsByCinema,
 		updateAndSave : updateAndSave,
 		createFunction:createFunction,
+		createNewFunction:createNewFunction,
 	};
 })();
+

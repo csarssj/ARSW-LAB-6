@@ -81,6 +81,12 @@ public interface CinemaPersitence {
      */
 	public void setFunction(String name, CinemaFunction function) throws CinemaPersistenceException;
 
+    /**
+     *
+     * @throws  CinemaPersistenceException if there is no such cinema
+     */
+    public void deleteFunction(String name, CinemaFunction function) throws CinemaPersistenceException;
+
 
 
 }
